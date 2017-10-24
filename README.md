@@ -23,14 +23,16 @@ or with [Bower](http://bower.io/):
 
 `bower install jquery-modal`
 
-or the good old fashioned way of including the scripts & styles manually:
+or use the hosted version from [cdnjs](https://cdnjs.com/libraries/jquery-modal):
 
 ```html
-<script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
-```
+<!-- Remember to include jQuery :) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
-_(You'll obviously need to include jQuery as well)._
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+```
 
 **Using Rails?** Check out the [jquery-modal-rails plugin](https://github.com/dei79/jquery-modal-rails)!
 
@@ -183,7 +185,11 @@ $.modal.defaults = {
   closeClass: '',         // Add additional class(es) to the close <a> tag.
   showClose: true,        // Shows a (X) icon/link in the top-right corner
   modalClass: "modal",    // CSS class added to the element being displayed in the modal.
-  spinnerHtml: null,      // HTML appended to the default spinner during AJAX requests.
+  blockerClass: "modal",  // CSS class added to the overlay (blocker).
+
+  // HTML appended to the default spinner during AJAX requests.
+  spinnerHtml: '<div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div>',
+
   showSpinner: true,      // Enable/disable the default spinner during AJAX requests.
   fadeDuration: null,     // Number of milliseconds the fade transition takes (null means no transition)
   fadeDelay: 1.0          // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
@@ -227,6 +233,8 @@ $('#purchase-form').on($.modal.BEFORE_CLOSE, function(event, modal) {
 jQuery Modal uses $.get for basic AJAX support. A simple spinner will be displayed by default (if you've included modal.css) and will have the class `modal-spinner`. If you've set the `modalClass` option, the spinner will be prefixed with that class name instead.
 
 You can add text or additional HTML to the spinner with the `spinnerHtml` option, or disable the spinner entirely by setting `showSpinner: false`.
+
+The default spinner is from the excellent [SpinKit](http://tobiasahlin.com/spinkit/) by [Tobias Ahlin](https://twitter.com/tobiasahlin) 👍
 
 ## Events
 
